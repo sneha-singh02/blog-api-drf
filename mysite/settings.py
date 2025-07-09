@@ -77,15 +77,19 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.getenv("MARIADB_DATABASE"),
-        "USER": os.getenv("MARIADB_USER"),
-        "PASSWORD": os.getenv("MARIADB_ROOT_PASSWORD"),
-        "HOST": os.getenv("MARIADB_HOST"),
-        "PORT": os.getenv("MARIADB_PORT", 3306),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get("MARIADB_DATABASE"),
+        'USER': os.environ.get("MARIADB_USER"),
+        'PASSWORD': os.environ.get("MARIADB_ROOT_PASSWORD"),
+        'HOST': os.environ.get("MARIADB_HOST"),
+        'PORT': os.environ.get("MARIADB_PORT"),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
+
 
 
 # Password validation
