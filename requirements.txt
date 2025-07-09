@@ -1,5 +1,5 @@
-Django>=4.0
-djangorestframework
-mariadb
-gunicorn
-whitenoise
+Django>=4.0,<5.0
+djangorestframework>=3.12
+mariadb>=1.1.5
+gunicorn>=20.1.0
+whitenoise>=6.0.0
