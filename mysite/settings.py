@@ -80,14 +80,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'your_db_name',
-        'USER': 'your_db_user',
-        'PASSWORD': 'your_db_password',
-        'HOST': 'your_db_host',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blogapi_db_pcev',  # from Render
+        'USER': 'blogapi_db_pcev_user',  # from Render
+        'PASSWORD': 'SPhl19qJZiqP713FzV0uw26dMur0cqb2', 
+        'HOST': 'dpg-d1n68aumcj7s73bnef30-a',  # from Render
+        'PORT': '5432',  # standard PostgreSQL port
     }
 }
+
 
 
 

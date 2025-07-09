@@ -3,3 +3,4 @@ djangorestframework
 mysqlclient
 gunicorn
 whitenoise
+psycopg2-binary
