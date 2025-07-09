@@ -1,34 +1,30 @@
-# Use a lightweight Python base image
-FROM python:3.10-slim
+# Use official Python base image
+FROM python:3.10
 
-# Set working directory
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Create app directory
 WORKDIR /app
 
-# Install system dependencies for mariadb
+# Install system dependencies needed for mysqlclient
 RUN apt-get update && apt-get install -y \
-    default-libmysqlclient-dev \
-    gcc \
-    pkg-config \
-    mariadb-client \
-    libmariadb-dev \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+  default-libmysqlclient-dev \
+  build-essential \
+  pkg-config \
+  && rm -rf /var/lib/apt/lists/*
 
-# Upgrade pip
-RUN pip install --upgrade pip
-
-# Copy requirements and install dependencies
+# Install python dependencies
 COPY requirements.txt /app/
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Copy rest of the code
+# Copy project files
 COPY . /app/
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput || true
 
-# Expose port (if needed by Render)
-EXPOSE 8000
-
-# Start gunicorn server
-CMD ["gunicorn", "mysite.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Start the server
+CMD gunicorn mysite.wsgi:application --bind 0.0.0.0:$PORT
