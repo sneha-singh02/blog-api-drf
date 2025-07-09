@@ -79,16 +79,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get("MARIADB_DATABASE"),
-        'USER': os.environ.get("MARIADB_USER"),
-        'PASSWORD': os.environ.get("MARIADB_ROOT_PASSWORD"),
-        'HOST': os.environ.get("MARIADB_HOST"),
-        'PORT': os.environ.get("MARIADB_PORT"),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'NAME': 'your_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_db_password',
+        'HOST': 'your_db_host',
+        'PORT': '3306',
     }
 }
+
 
 
 

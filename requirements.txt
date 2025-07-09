@@ -1,3 +1,4 @@
-django
+Django>=4.0
 djangorestframework
-environs
+mysqlclient
+gunicorn
