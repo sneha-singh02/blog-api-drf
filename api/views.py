@@ -8,10 +8,13 @@ class BlogPostListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         title = self.request.query_params.get("title", "")
-        if title:
-            return BlogPost.objects.filter(title__icontains=title)
-        return BlogPost.objects.all()
+        queryset = BlogPost.objects.all()
 
+        if title:
+            queryset = queryset.filter(title__icontains=title)
+
+        return queryset.order_by("-published_date")
+    
     def delete(self, request, *args, **kwargs):
         BlogPost.objects.all().delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
