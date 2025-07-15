@@ -4,3 +4,4 @@ mysqlclient
 gunicorn
 whitenoise
 psycopg2-binary
+drf-yasg

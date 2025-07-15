@@ -15,10 +15,7 @@ class BlogPostListCreate(generics.ListCreateAPIView):
 
         return queryset.order_by("-published_date")
     
-    def delete(self, request, *args, **kwargs):
-        BlogPost.objects.all().delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
+    
 class BlogPostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer

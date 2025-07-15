@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "api",
     "rest_framework",
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,18 +76,26 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 
+if os.environ.get('RENDER', None) == 'true':
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogapi_db_pcev',  
-        'USER': 'blogapi_db_pcev_user',  
-        'PASSWORD': 'SPhl19qJZiqP713FzV0uw26dMur0cqb2', 
-        'HOST': 'dpg-d1n68aumcj7s73bnef30-a',  
-        'PORT': '5432',  # standard PostgreSQL port
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'blogapi_db_pcev',  
+            'USER': 'blogapi_db_pcev_user',  
+            'PASSWORD': 'SPhl19qJZiqP713FzV0uw26dMur0cqb2', 
+            'HOST': 'dpg-d1n68aumcj7s73bnef30-a',  
+            'PORT': '5432',  # standard PostgreSQL port
+        }
     }
-}
-
+else:
+    # Use SQLite locally
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 
