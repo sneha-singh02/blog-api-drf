@@ -25,17 +25,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 import os
 
-schema_view = get_schema_view(
-   openapi.Info(
-      title="Blog API",
-      default_version='v1',
-      description="Simple Blog API built with Django REST Framework",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="snehasingh19@gmail.com"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+api_info = openapi.Info(
+    title="Blog API ",
+    default_version='v1',
+    description="Simple Blog API built with Django REST Framework. You can create, read, update and delete blog posts.",
+    terms_of_service="https://www.google.com/policies/terms/",
+    contact=openapi.Contact(email="snehasingh19@gmail.com"),
+    license=openapi.License(name="MIT License"),
 )
+
+
+
+schema_view = get_schema_view(
+    api_info,
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
