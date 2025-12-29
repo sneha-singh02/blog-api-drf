@@ -83,10 +83,10 @@ if os.environ.get('RENDER', None) == 'true':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'blogapi_db_pcev',  
-            'USER': 'blogapi_db_pcev_user',  
-            'PASSWORD': 'SPhl19qJZiqP713FzV0uw26dMur0cqb2', 
-            'HOST': 'dpg-d1n68aumcj7s73bnef30-a',  
+            'NAME': 'blog-api-db',  
+            'USER': 'blog_api_db_tnx7_user',  
+            'PASSWORD': 's592BbmiXe5E3eG3gnUjThknJqoeynbR', 
+            'HOST': 'dpg-d5999fp5pdvs73a8mog0-a',  
             'PORT': '5432',  # standard PostgreSQL port
         }
     }
