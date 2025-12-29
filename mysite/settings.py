@@ -83,7 +83,7 @@ if os.environ.get('RENDER', None) == 'true':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'blog-api-db',  
+            'NAME': 'blog_api_db_tnx7',  
             'USER': 'blog_api_db_tnx7_user',  
             'PASSWORD': 's592BbmiXe5E3eG3gnUjThknJqoeynbR', 
             'HOST': 'dpg-d5999fp5pdvs73a8mog0-a',  
