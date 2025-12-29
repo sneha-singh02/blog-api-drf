@@ -6,11 +6,10 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-# Install system dependencies for mysqlclient
+# Install system dependencies for mysqlclient (or psycopg2 if using PostgreSQL)
 RUN apt-get update && apt-get install -y \
-  default-libmysqlclient-dev \
   build-essential \
-  pkg-config \
+  libpq-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # Install python dependencies
@@ -25,7 +24,6 @@ COPY . /app/
 RUN python manage.py collectstatic --noinput || true
 
 # Run DB migrations
-RUN python manage.py makemigrations
 RUN python manage.py migrate
 
 # Start the server
