@@ -78,31 +78,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 
-if os.environ.get('RENDER', None) == 'true':
+import dj_database_url
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'blog_api_db_tnx7',  
-            'USER': 'blog_api_db_tnx7_user',  
-            'PASSWORD': 's592BbmiXe5E3eG3gnUjThknJqoeynbR', 
-            'HOST': 'dpg-d5999fp5pdvs73a8mog0-a',  
-            'PORT': '5432',  # standard PostgreSQL port
-        }
-    }
-else:
-    # Use SQLite locally
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-
-
-
-
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
